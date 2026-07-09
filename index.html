@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Great Hall Meal Planner</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Private Wizarding Dinner Library</p>
+          <h1>Great Hall Meal Planner</h1>
+        </div>
+        <div class="stat-strip" aria-live="polite">
+          <span><strong id="statRecipes">0</strong> dinner entries</span>
+          <span><strong id="statCurated">0</strong> curated dinners</span>
+          <span><strong id="statGuides">0</strong> source guides</span>
+          <span><strong id="statSelected">0</strong> selected</span>
+        </div>
+      </header>
+
+      <nav class="tabs" aria-label="Sections">
+        <button class="tab is-active" type="button" data-tab="picker">Sorting Hat</button>
+        <button class="tab" type="button" data-tab="recipes">Spellbook</button>
+        <button class="tab" type="button" data-tab="guides">Library</button>
+        <button class="tab" type="button" data-tab="plan">Feast Plan</button>
+      </nav>
+
+      <main>
+        <section class="view is-active" id="view-picker">
+          <div class="control-band">
+            <label>
+              <span>Servings</span>
+              <input id="servingsInput" type="number" min="1" max="30" step="1">
+            </label>
+            <label>
+              <span>Dinners</span>
+              <input id="mealTargetInput" type="number" min="1" max="21" step="1">
+            </label>
+            <label class="toggle">
+              <input id="healthyFocusToggle" type="checkbox">
+              <span>Healthy focus</span>
+            </label>
+            <label class="toggle">
+              <input id="guideSourcesToggle" type="checkbox">
+              <span>Guide sources</span>
+            </label>
+            <label class="toggle">
+              <input id="curatedOnlyToggle" type="checkbox">
+              <span>Curated only</span>
+            </label>
+            <label class="toggle">
+              <input id="beginnerReadyToggle" type="checkbox">
+              <span>Beginner ready</span>
+            </label>
+          </div>
+
+          <div class="protein-panel" aria-label="Protein filters">
+            <div class="protein-row">
+              <span>Focus</span>
+              <div class="protein-options" id="proteinFocusOptions"></div>
+            </div>
+            <div class="protein-row">
+              <span>Exclude</span>
+              <div class="protein-options" id="proteinExcludeOptions"></div>
+            </div>
+          </div>
+
+          <div class="picker-layout">
+            <section class="recipe-stage" aria-live="polite">
+              <article class="recipe-card" id="activeCard">
+                <div class="card-empty">Summoning dinners</div>
+              </article>
+              <div class="action-row">
+                <button class="secondary" type="button" id="passButton">Pass</button>
+                <button class="primary" type="button" id="keepButton">Keep</button>
+                <button class="secondary" type="button" id="randomButton">Summon</button>
+              </div>
+            </section>
+
+            <aside class="side-panel">
+              <div class="panel-head">
+                <h2>This Week's Feast</h2>
+                <button class="text-button" type="button" id="clearPlanButton">Clear</button>
+              </div>
+              <div id="selectedList" class="selected-list"></div>
+              <button class="primary full" type="button" id="buildFromPickerButton">Build Feast</button>
+            </aside>
+          </div>
+        </section>
+
+        <section class="view" id="view-recipes">
+          <div class="library-toolbar">
+            <input id="recipeSearch" type="search" placeholder="Search spellbook">
+            <select id="categoryFilter" aria-label="Category">
+              <option value="all">All categories</option>
+            </select>
+            <select id="qualityFilter" aria-label="Quality">
+              <option value="all">All quality</option>
+              <option value="good">Good</option>
+              <option value="partial">Partial</option>
+              <option value="limited">Limited</option>
+            </select>
+            <select id="readinessFilter" aria-label="Readiness">
+              <option value="all">All readiness</option>
+              <option value="curated" selected>Curated</option>
+              <option value="beginner_ready">Beginner ready</option>
+              <option value="needs_cleanup">Needs cleanup</option>
+            </select>
+            <label class="toggle">
+              <input id="reviewToggle" type="checkbox">
+              <span>Tagged items</span>
+            </label>
+          </div>
+          <div id="recipeGrid" class="grid-list"></div>
+        </section>
+
+        <section class="view" id="view-guides">
+          <div class="library-toolbar">
+            <input id="guideSearch" type="search" placeholder="Search library">
+            <select id="guideCategoryFilter" aria-label="Guide category">
+              <option value="all">All categories</option>
+            </select>
+          </div>
+          <div id="guideGrid" class="grid-list"></div>
+        </section>
+
+        <section class="view" id="view-plan">
+          <div class="plan-layout">
+            <section class="plan-section">
+              <div class="panel-head">
+                <h2>Chosen Meals</h2>
+                <button class="primary" type="button" id="buildPlanButton">Build Feast</button>
+              </div>
+              <div id="planMeals" class="plan-meals"></div>
+            </section>
+            <section class="plan-section">
+              <h2>Market List</h2>
+              <div id="groceryList" class="grocery-list"></div>
+            </section>
+            <section class="plan-section">
+              <h2>Cooking Steps</h2>
+              <div id="cookingPlan" class="cooking-plan"></div>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./data.js"></script>
+    <script src="./curated-recipes.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
