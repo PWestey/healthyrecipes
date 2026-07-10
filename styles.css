@@ -188,6 +188,14 @@ button.secondary,
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
 }
 
+.tab {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.42rem;
+  letter-spacing: 0.5px;
+  min-height: 48px;
+}
+
 .view {
   display: none;
 }
@@ -377,11 +385,11 @@ button:focus-visible {
 .recipe-title {
   margin: 0;
   color: #4d1d26;
-  font-family: Georgia, "Times New Roman", serif;
-  font-weight: 700;
-  font-size: clamp(1.8rem, 5vw, 3.8rem);
-  line-height: 0.98;
-  letter-spacing: 0;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(2rem, 5.5vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: 0.5px;
   max-width: 940px;
   overflow-wrap: anywhere;
 }
