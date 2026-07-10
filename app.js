@@ -383,11 +383,11 @@
       </div>
       <div class="recipe-columns">
         <div class="recipe-block">
-          <h3>Market List</h3>
+          <h3>Diagon Alley List</h3>
           ${ingredientItems ? `<ul>${ingredientItems}</ul>` : `<p class="card-note">Source text only</p>`}
         </div>
         <div class="recipe-block">
-          <h3>Cooking Steps</h3>
+          <h3>The Brewing</h3>
           ${cookingFlow || `<p class="card-note">${escapeHtml(recipe.rawText.slice(0, 700))}</p>`}
         </div>
       </div>
@@ -495,7 +495,7 @@
     const selected = selectedRecipes();
     renderStats();
     if (!selected.length) {
-      els.selectedList.innerHTML = `<div class="empty-state">No feast picks yet</div>`;
+      els.selectedList.innerHTML = `<div class="empty-state">Nothing sorted into your Feast yet</div>`;
       return;
     }
     els.selectedList.innerHTML = selected
@@ -541,11 +541,11 @@
     list = list.slice(0, 240);
 
     if (!list.length) {
-      els.recipeGrid.innerHTML = `<div class="empty-state">No dinner entries match</div>`;
+      els.recipeGrid.innerHTML = `<div class="empty-state">No dishes in the Spellbook match</div>`;
       return;
     }
 
-    const note = total > list.length ? `<div class="empty-state">Showing ${list.length} of ${total}. Search to narrow.</div>` : "";
+    const note = total > list.length ? `<div class="empty-state">Showing ${list.length} of ${total} dishes. Refine your search to narrow.</div>` : "";
     els.recipeGrid.innerHTML =
       note +
       list
@@ -585,7 +585,7 @@
       .sort((a, b) => a.title.localeCompare(b.title));
 
     if (!list.length) {
-      els.guideGrid.innerHTML = `<div class="empty-state">No guides match</div>`;
+      els.guideGrid.innerHTML = `<div class="empty-state">No volumes in the Library match</div>`;
       return;
     }
 
@@ -613,9 +613,9 @@
     const selected = selectedRecipes();
     renderStats();
     if (!selected.length) {
-      els.planMeals.innerHTML = `<div class="empty-state">No feast picks yet</div>`;
-      els.groceryList.innerHTML = `<div class="empty-state">No market list yet</div>`;
-      els.cookingPlan.innerHTML = `<div class="empty-state">No cooking steps yet</div>`;
+      els.planMeals.innerHTML = `<div class="empty-state">Nothing sorted into your Feast yet</div>`;
+      els.groceryList.innerHTML = `<div class="empty-state">Your Diagon Alley list is empty</div>`;
+      els.cookingPlan.innerHTML = `<div class="empty-state">No potions brewing yet</div>`;
       return;
     }
 
@@ -647,7 +647,7 @@
   function renderGroceries(selected) {
     const combined = combineIngredients(selected);
     const combinedHtml = combined.length
-      ? `<div class="grocery-group"><h3>Combined</h3><ul>${combined.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></div>`
+      ? `<div class="grocery-group"><h3>Combined Cauldron</h3><ul>${combined.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></div>`
       : "";
 
     const byRecipe = selected
@@ -664,7 +664,7 @@
       })
       .join("");
 
-    els.groceryList.innerHTML = combinedHtml + byRecipe || `<div class="empty-state">No readable ingredients</div>`;
+    els.groceryList.innerHTML = combinedHtml + byRecipe || `<div class="empty-state">No readable ingredients to gather</div>`;
   }
 
   function renderCooking(selected) {
